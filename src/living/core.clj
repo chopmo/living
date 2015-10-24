@@ -1,7 +1,8 @@
 (ns living.core)
 
 (defn update-smallest [map]
-  (let [[min-key min-val] (first (sort-by last map))]
+  (let [min-pair (first (sort-by last map))
+        [min-key min-val] min-pair]
     (assoc map min-key (+ min-val min-key))))
 
 (defn lcm [& xs]
