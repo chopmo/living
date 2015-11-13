@@ -29,10 +29,15 @@
       (is (= (__ [1 [2 nil [3 [4 [5 nil nil] [6 nil nil]] ]]
                   [2 [3 nil [4 [6 nil nil] nil]] nil]]) false)))))
 
+(deftest test-flipping
+  (let [__ flip]
+    (testing "Higher order function to flip args"
+      (is (= 3 ((__ nth) 2 [1 2 3 4 5])))
+      (is (= true ((__ >) 7 8)))
+      (is (= 4 ((__ quot) 2 8)))
+      (is (= [1 2 3] ((__ take) [1 2 3 4 5] 3))))))
+
 ;; (deftest test-flipping
-;;   (let [__ flip]
-;;     (testing "Higher order function to flip args"
-;;       (is (= 3 ((__ nth) 2 [1 2 3 4 5])))
-;;       (is (= true ((__ >) 7 8)))
-;;       (is (= 4 ((__ quot) 2 8)))
-;;       (is (= [1 2 3] ((__ take) [1 2 3 4 5] 3))))))
+;;   (testing "Higher order function to flip args"
+;;     (is (= 3 ((__ nth) 2 [1 2 3 4 5])))
+;;     ))

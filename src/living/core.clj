@@ -43,3 +43,8 @@
 
      (let [[value left right] node]
        (= left (mirror right))))))
+
+(def flip
+  (fn [f]
+    (fn [& args]
+      (apply f (reverse args)))))
