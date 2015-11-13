@@ -41,4 +41,15 @@
 (deftest test-rotate
   (testing "Rotating a sequence in either direction"
     (let [__ rotate]
-      (is (= (__ 2 [1 2 3 4 5]) '(3 4 5 1 2))))))
+      (is (= (__ 2 [1 2 3 4 5]) '(3 4 5 1 2)))
+      (is (= (__ -2 [1 2 3 4 5]) '(4 5 1 2 3)))
+      (is (= (__ 6 [1 2 3 4 5]) '(2 3 4 5 1)))
+      (is (= (__ 1 '(:a :b :c)) '(:b :c :a)))
+      (is (= (__ -4 '(:a :b :c)) '(:c :a :b))))))
+
+(deftest test-reverse-interleave
+  (testing "Reversing the interleave process"
+    (let [__ rev-interleave]
+      (is (= (__ [1 2 3 4 5 6] 2) '((1 3 5) (2 4 6))))
+      (is (= (__ (range 9) 3) '((0 3 6) (1 4 7) (2 5 8))))
+      (is (= (__ (range 10) 5) '((0 5) (1 6) (2 7) (3 8) (4 9)))))))

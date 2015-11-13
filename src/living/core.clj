@@ -52,6 +52,11 @@
 (def rotate
   (fn [offset list]
     (let [list-size (count list)
-          adjusted-offset (+ list-size offset)]
+          adjusted-offset (mod offset list-size)]
+      (take list-size (drop adjusted-offset (cycle list))))))
 
-      )))
+(def rev-interleave
+  (fn [s n]
+    (let [list-size (/ (count s) n)
+          lists (partition list-size s)]
+      (map #() (range n)))))
