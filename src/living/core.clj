@@ -7,3 +7,29 @@
                             (assoc map min-key (+ min-val min-key))))]
    (loop [map (zipmap xs xs)]
      (or (lcm-result map) (recur (update-smallest map))))))
+
+;; Recursive
+(defn pascal [n]
+  (if (= 1 n)
+    [1]
+    (let [prev-list (pascal (dec n))
+          partitions (partition 2 1 prev-list)
+          updated-list (map (partial apply +) partitions)]
+      (concat [1] updated-list [1]))))
+
+;; Iteration
+(defn pascal [n]
+  (loop [iteration 1
+         list [1]]
+    (if (= n iteration)
+      list
+      (let [partitions (partition 2 1 list)
+            reduced-list (map (partial apply +) partitions)
+            new-list (concat [1] reduced-list [1])]
+        (recur (inc iteration) new-list)))))
+
+(fn tree? [node]
+  (boolean (or (nil? node)
+       (if (and (coll? node) (= 3 (count node)))
+         (let [[value left right] node]
+           (and value (tree? left) (tree? right)))))))
