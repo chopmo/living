@@ -37,7 +37,8 @@
       (is (= 4 ((__ quot) 2 8)))
       (is (= [1 2 3] ((__ take) [1 2 3 4 5] 3))))))
 
-;; (deftest test-flipping
-;;   (testing "Higher order function to flip args"
-;;     (is (= 3 ((__ nth) 2 [1 2 3 4 5])))
-;;     ))
+
+(deftest test-rotate
+  (testing "Rotating a sequence in either direction"
+    (let [__ rotate]
+      (is (= (__ 2 [1 2 3 4 5]) '(3 4 5 1 2))))))

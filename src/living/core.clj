@@ -48,3 +48,10 @@
   (fn [f]
     (fn [& args]
       (apply f (reverse args)))))
+
+(def rotate
+  (fn [offset list]
+    (let [list-size (count list)
+          adjusted-offset (+ list-size offset)]
+
+      )))
