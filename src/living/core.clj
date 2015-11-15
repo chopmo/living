@@ -57,6 +57,12 @@
 
 (def rev-interleave
   (fn [s n]
-    (let [list-size (/ (count s) n)
-          lists (partition list-size s)]
-      (map #() (range n)))))
+    (let [lists (partition n s)]
+      (map (fn [i] (map (fn [list] (nth list i)) lists)) (range n)))))
+
+
+(def split-by-type
+  (fn [s]
+    (let [types (->> s (map type) set)]
+      (for [t types]
+        (filter #(= t (type %1)) s)))))
