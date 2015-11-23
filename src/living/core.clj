@@ -66,3 +66,8 @@
     (let [types (->> s (map type) set)]
       (for [t types]
         (filter #(= t (type %1)) s)))))
+
+(def genprimes
+  (fn [n]
+    (let [prime? (fn [x] (not-any? #(= 0 (mod x %)) (range 2 (- x 1))))]
+      (take n (filter prime? (iterate inc 2))))))
